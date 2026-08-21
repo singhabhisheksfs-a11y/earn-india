@@ -1,47 +1,61 @@
+import { SiteHeader } from "@/components/site-header"
+import { Hero } from "@/components/hero"
+import { JobsExplorer } from "@/components/jobs-explorer"
+import { ProfileSummary } from "@/components/profile-summary"
+import { SkillBadges } from "@/components/skill-badges"
+import { CompletedShifts } from "@/components/completed-shifts"
+import { Logo } from "@/components/logo"
+
 export default function Page() {
   return (
-    <main
-      style={{
-        colorScheme: 'light dark',
-        position: 'relative',
-        display: 'flex',
-        minHeight: '100vh',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'light-dark(#fff, #000)',
-        color: 'light-dark(#000, #fff)',
-      }}
-    >
-      <svg
-        aria-hidden="true"
-        style={{ width: 80, height: 80 }}
-        width={80}
-        height={80}
-        fill="none"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-        stroke="currentColor"
-        strokeWidth="0.5"
-      >
-        <path
-          d="M14.2 14.2H17V6.9375C17 4.76288 15.2371 3 13.0625 3H5.8V5.8M14.2 14.2V7.79063L7.79062 14.2H14.2ZM14.2 14.2V17H6.9375C4.76288 17 3 15.2371 3 13.0625V5.8H5.8M5.8 5.8V12.2313L12.2313 5.8H5.8Z"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <p
-        style={{
-          position: 'absolute',
-          left: '50%',
-          top: 'calc(50% + 56px)',
-          transform: 'translateX(-50%)',
-          whiteSpace: 'nowrap',
-          fontSize: '14px',
-          fontWeight: 500,
-          color: 'light-dark(#71717a, #a1a1aa)',
-        }}
-      >
-        Your v0 generation will show here.
-      </p>
-    </main>
+    <div className="flex min-h-svh flex-col">
+      <SiteHeader />
+
+      <main className="flex-1">
+        <Hero />
+
+        <JobsExplorer />
+
+        {/* Verification & gamified badges */}
+        <section
+          id="verification"
+          className="scroll-mt-20 border-t border-border/70 bg-muted/30"
+        >
+          <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+            <div className="mb-6 flex flex-col gap-2">
+              <h2 className="font-display text-3xl font-bold tracking-tight">
+                Your profile & badges
+              </h2>
+              <p className="text-muted-foreground">
+                Get verified and climb the tiers to unlock priority booking.
+              </p>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_1.4fr]">
+              <ProfileSummary />
+              <SkillBadges />
+            </div>
+          </div>
+        </section>
+
+        {/* My shifts / reviews */}
+        <section
+          id="my-shifts"
+          className="scroll-mt-20"
+        >
+          <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+            <CompletedShifts />
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-border/70 bg-background">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row sm:px-6 lg:px-8">
+          <Logo />
+          <p className="text-sm text-muted-foreground">
+            Made for India&apos;s students · Demo UI
+          </p>
+        </div>
+      </footer>
+    </div>
   )
 }
